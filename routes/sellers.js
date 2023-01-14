@@ -6,7 +6,7 @@ const uniqid = require('uniqid');
 
 /* GET home page. */
 router.get('')
-  .get(async (req, res, next) => {
+  .get('', async (req, res, next) => {
     let data = []
     const getSeller = db.collection('seller')
     const snapshotSeller = await getSeller.get();
