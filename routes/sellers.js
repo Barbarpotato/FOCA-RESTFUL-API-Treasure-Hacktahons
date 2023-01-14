@@ -35,7 +35,7 @@ router.get('')
     res.json(data)
   })
   .get('/history/:sellerId', async (req, res) => {
-    let currentData = []
+    let currentData = ''
     const sellerRef = db.collection('seller')
     const snapshot = await sellerRef.where('id_seller', "==", req.params.sellerId).get()
     if (snapshot.empty) {
@@ -45,7 +45,7 @@ router.get('')
     }
     snapshot.forEach(doc => {
       const data = doc.data()
-      currentData.push(data.transaction_history)
+      currentData = data.transaction_history
     })
     res.statusCode = 200
     res.json(currentData)
