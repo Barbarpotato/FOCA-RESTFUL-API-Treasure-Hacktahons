@@ -1,4 +1,11 @@
-# WorkFlow
+# Basic Workflow
+1. seller melakukan publikasi produk yang akan di perlihatkan oleh contributor(donatur) melalui METHOD POST:"/sellers/product/:sellerId"
+2. produk tersebut dapat diakses oleh contributor(donatur) melalui METHOD: GET "/contributor/products". hal ini karena contributor(donatur) akan melakukan penebusan pada produk yang dipublikasikan seller
+3. contributor(donatur) melakukan penebusan melalui METHOD: POST "/contributor/purchase/:contributorId"
+4. setelah ditebus produk yang ditebus akan masuk dalam endpoint  METHOD: GET "/users/leftoffers" dimana endpoint ini bisa dilihat oleh pihak contributor(yayasan atau user)
+5. pihak contributor(yayasan atau user) dapat melakukan claim leftoffers yang tersedia melalui endpoint METHOD: POST "/users/claim/:contributorId"
+
+# WorkFlow Details
 ### seller router
 - method POST pada endpoint "/sellers/product/:sellerId" dilakukan untuk posting produk makanan, yang nantinya akan di tebus oleh donatur. tentunya harus memiliki id_seller yang tepat untuk melakukan posting data, jika id_seller tidak tervalidasi, maka post data tidak dapat dioperasikan. Parameter yang dibutuhkan dalam POST data (name:string, qty:number, desc:string, prize:number)
 - method GET pada endpoint "/sellers" digunakan untuk melihat list semua seller dalam sistem.
