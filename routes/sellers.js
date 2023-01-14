@@ -72,6 +72,7 @@ router.get('')
     res.json(currentData)
   })
   .post('/product/:sellerId', async (req, res, next) => {
+    let username = ''
     const productRef = db.collection('seller')
     const snapshot = await productRef.where('id_seller', '==', req.params.sellerId).get();
     if (snapshot.empty) {
@@ -79,10 +80,14 @@ router.get('')
       res.setHeader('Content-Type', 'application/json')
       return res.json({ message: 'seller client not found' })
     }
+    snapshot.forEach(doc => {
+      username = doc.data().username
+    })
     const id_product = uuid()
     //! ATTRIBUT
     const { name, qty, desc, prize } = req.body
     await db.collection('products').doc(uniqid()).set({
+      username: username,
       name, qty, desc, prize,
       id_product: id_product,
       id_seller: req.params.sellerId
