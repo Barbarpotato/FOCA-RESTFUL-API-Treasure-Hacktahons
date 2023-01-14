@@ -16,6 +16,29 @@ router.get('/')
         res.setHeader('Content-Type', 'application/json')
         res.json(data)
     })
+    .post('/signin', async (req, res) => {
+        let user = {}
+        const { email, password } = req.body
+        const getContributor = db.collection('contributor')
+        const validateUser = await getContributor.where('email', "==", email).where('password', "==", password).get()
+        if (validateUser.empty) {
+            res.statusCode = 404
+            res.setHeader('Content-Type', 'application/json')
+            res.json({ message: 'user not found' });
+        }
+        validateUser.forEach(doc => {
+            const data = doc.data()
+            user = {
+                id_contributor: data.id_contributor,
+                username: data.username,
+                email: data.email,
+                role: data.role
+            }
+        })
+        res.statusCode = 200
+        res.setHeader('Content-Type', 'application/json')
+        res.json(user);
+    })
     .post('/purchase/:contributorId', async (req, res, next) => {
         let documentId = ''
         let currentQty = 0

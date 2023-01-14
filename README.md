@@ -8,6 +8,7 @@
 
 ### contributor router
 - method Get pada "/contributor/products" digunakan untuk melihat semua makanan yang dijual oleh pihak seller
+- method Post pada "/contributor/signin" digunakan untuk melakukan sign-in. jika valid maka server akan meresponse dalam bentuk JSON dengan isi (contributor_id:string, username:string, email:string, role:string). parameter yang dibutuhkan dalam POST data: (email:string, password:string)
 - method Post pada "/contributor/purchase/:contributorId" digunakan untuk melakukan penebusan product makanan yang dijual oleh pihak seller. Parameter yang dibutuhkan dalam POST data: (qty:number, prize:number, id_seller:string, id_product:string). Hal yang perlu diperhatikan jika contributorId tidak valid (dimana id pengguna yang ingin melakukan penebusan bukan termasuk role donatur) maka tidak bisa melakukan operasi ini
 
 ### users router
