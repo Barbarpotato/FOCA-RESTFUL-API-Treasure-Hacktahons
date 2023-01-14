@@ -5,7 +5,7 @@ const firebase = require('firebase-admin');
 firebase.initializeApp({
     credential: firebase.credential.cert({
         project_id: process.env.PROJECT_ID,
-        private_key: process.env.PRIVATE_KEY.replace(/\n/gm, '\n'),
+        private_key: process.env.PRIVATE_KEY,
         client_email: process.env.CLIENT_EMAIL,
     })
 })
