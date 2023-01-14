@@ -51,7 +51,7 @@ router.get('')
     res.json(currentData)
   })
   .get('/leftoffer/:sellerId', async (req, res) => {
-    let currentData = {}
+    let arrData = []
     const sellerRef = db.collection('leftoffers')
     const snapshot = await sellerRef.where('id_seller', "==", req.params.sellerId).get()
     if (snapshot.empty) {
@@ -61,15 +61,10 @@ router.get('')
     }
     snapshot.forEach(doc => {
       const data = doc.data()
-      currentData.desc = data.desc
-      currentData.id_product = data.id_product
-      currentData.id_seller = data.id_seller
-      currentData.name = data.name
-      currentData.prize = data.prize
-      currentData.qty = data.qty
+      arrData.push(data)
     })
     res.statusCode = 200
-    res.json(currentData)
+    res.json(arrData)
   })
   .post('/product/:sellerId', async (req, res, next) => {
     let username = ''
