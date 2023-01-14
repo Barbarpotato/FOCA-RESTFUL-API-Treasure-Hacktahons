@@ -14,4 +14,4 @@
 
 ### users router
 - method GET pada "/users/leftoffers" digunakan untuk melihat semua list makanan dari pihak seller yang telah ditebus oleh donatur.
-- method POST pada "/users/claim/constributorId" digunakan untuk melakukan claim makanan leftovers dari seller yang sudah ditebus oleh donatur. Parameter yang dibutuhkan dalam POST data: (id_seller:string, id_product:string) hal ini karena untuk menentukan leftover apa yang akan di claim oleh pengguna.
+- method POST pada "/users/claim/:contributorId" digunakan untuk melakukan claim makanan leftovers dari seller yang sudah ditebus oleh donatur. Parameter yang dibutuhkan dalam POST data: (id_seller:string, id_product:string) hal ini karena untuk menentukan leftover apa yang akan di claim oleh pengguna.
