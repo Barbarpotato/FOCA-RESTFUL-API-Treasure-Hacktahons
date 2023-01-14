@@ -11,6 +11,7 @@
 - method GET pada endpoint "/sellers" digunakan untuk melihat list semua seller dalam sistem.
 - method GET pada endpoint "/sellers/product/:sellerId digunakan untuk melihat list produk dalam suatu seller
 - method GET pada endpoint "/sellers/history/:sellerId" digunakan untuk melihat riwayat penebusan dan claimer dalam suatu seller
+- method GET pada endpoint "/sellers/leftoffer/:sellerId" digunakan untuk melihat product yang telah ditebus oleh contributor(donatur) tapi belum di claim oleh contributor(user/yayasan)
 - method DELETE pada endpoint "/seller/product/:sellerId/:productId" digunakan untuk menghapus sebuah produk dari seller apapun resikonya.
 
 ### contributor router

@@ -50,6 +50,27 @@ router.get('')
     res.statusCode = 200
     res.json(currentData)
   })
+  .get('/leftoffer/:sellerId', async (req, res) => {
+    let currentData = {}
+    const sellerRef = db.collection('leftoffers')
+    const snapshot = await sellerRef.where('id_seller', "==", req.params.sellerId).get()
+    if (snapshot.empty) {
+      res.statusCode = 404
+      res.setHeader('Content-Type', 'application/json')
+      return res.json({ message: "seller not found" })
+    }
+    snapshot.forEach(doc => {
+      const data = doc.data()
+      currentData.desc = data.desc
+      currentData.id_product = data.id_product
+      currentData.id_seller = data.id_seller
+      currentData.name = data.name
+      currentData.prize = data.prize
+      currentData.qty = data.qty
+    })
+    res.statusCode = 200
+    res.json(currentData)
+  })
   .post('/product/:sellerId', async (req, res, next) => {
     const productRef = db.collection('seller')
     const snapshot = await productRef.where('id_seller', '==', req.params.sellerId).get();
