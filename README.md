@@ -1,9 +1,9 @@
 # WorkFlow
 ### seller router
-- method POST pada endpoint "/seller/product/:sellerId" dilakukan untuk posting produk makanan, yang nantinya akan di tebus oleh donatur. tentunya harus memiliki id_seller yang tepat untuk melakukan posting data, jika id_seller tidak tervalidasi, maka post data tidak dapat dioperasikan. Parameter yang dibutuhkan dalam POST data (name:string, qty:number, desc:string, prize:number)
-- method GET pada endpoint "/seller" digunakan untuk melihat list semua seller dalam sistem.
-- method GET pada endpoint "/seller/product/:sellerId digunakan untuk melihat list produk dalam suatu seller
-- method GET pada endpoint "/seller/history/:sellerId" digunakan untuk melihat riwayat penebusan dan claimer dalam suatu seller
+- method POST pada endpoint "/sellers/product/:sellerId" dilakukan untuk posting produk makanan, yang nantinya akan di tebus oleh donatur. tentunya harus memiliki id_seller yang tepat untuk melakukan posting data, jika id_seller tidak tervalidasi, maka post data tidak dapat dioperasikan. Parameter yang dibutuhkan dalam POST data (name:string, qty:number, desc:string, prize:number)
+- method GET pada endpoint "/sellers" digunakan untuk melihat list semua seller dalam sistem.
+- method GET pada endpoint "/sellers/product/:sellerId digunakan untuk melihat list produk dalam suatu seller
+- method GET pada endpoint "/sellers/history/:sellerId" digunakan untuk melihat riwayat penebusan dan claimer dalam suatu seller
 - method DELETE pada endpoint "/seller/product/:sellerId/:productId" digunakan untuk menghapus sebuah produk dari seller apapun resikonya.
 
 ### contributor router
