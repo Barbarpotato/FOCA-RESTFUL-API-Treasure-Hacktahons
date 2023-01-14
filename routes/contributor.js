@@ -16,6 +16,29 @@ router.get('/')
         res.setHeader('Content-Type', 'application/json')
         res.json(data)
     })
+    .get('/history/:contributorId', async (req, res) => {
+        let currentData = []
+        let role = ''
+        const sellerRef = db.collection('contributor')
+        const snapshot = await sellerRef.where('id_contributor', "==", req.params.contributorId).get()
+        if (snapshot.empty) {
+            res.statusCode = 404
+            return res.json({ message: 'user not found!' })
+        }
+        snapshot.forEach(doc => {
+            const data = doc.data()
+            role = data.role
+            if (role === 'donatur') {
+                currentData.push(data.purchase_history)
+            }
+            else {
+                currentData.push(data.claim_history)
+            }
+        })
+        res.statusCode = 200
+        res.setHeader('Content-Type', 'application/json')
+        res.json(currentData)
+    })
     .post('/signin', async (req, res) => {
         let user = {}
         const { email, password } = req.body

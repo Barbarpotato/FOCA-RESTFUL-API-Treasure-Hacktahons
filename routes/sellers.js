@@ -37,13 +37,17 @@ router.get('')
   .get('/history/:sellerId', async (req, res) => {
     let currentData = []
     const sellerRef = db.collection('seller')
-    const snapshot = await sellerRef.get()
+    const snapshot = await sellerRef.where('id_seller', "==", req.params.sellerId).get()
+    if (snapshot.empty) {
+      res.statusCode = 404
+      res.setHeader('Content-Type', 'application/json')
+      return res.json({ message: "seller not found" })
+    }
     snapshot.forEach(doc => {
       const data = doc.data()
       currentData.push(data.transaction_history)
     })
     res.statusCode = 200
-    res.setHeader('Content-Type', 'application/json')
     res.json(currentData)
   })
   .post('/product/:sellerId', async (req, res, next) => {
